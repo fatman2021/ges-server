@@ -11,7 +11,7 @@ task :import_pitchfork_top => :environment do
 	page.search(".object-list").each do |el|
 		el.search('.info h1 a').each do |link|
 			artistName = link.search(".artist").text().gsub(/[:]/, "")
-			songName = link.search(".title").text()
+			songName = link.search(".title").text().gsub(/["]/, "")
 			track = Track.find_by_name(songName)
 			if track.nil?
 				collection.tracks.create(:artist => artistName, :name => songName)
