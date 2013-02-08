@@ -11,3 +11,17 @@ task :import_top => :environment do
 	end
 
 end
+
+desc "Grab CD101 current playlist"
+task :import_cd101_playlist => :environment do 
+	require 'mechanize'
+	browser = Mechanize.new
+	page = browser.get('http://cd1025.com/about/playlists/current-playlist')
+	collection = Collection.create!(:name => 'cd102playlist')
+	page.search("#content-main").each do |content|
+		content.search('a').each do |link|
+			puts link
+		end
+	end
+
+end
