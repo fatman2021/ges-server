@@ -25,3 +25,33 @@ task :import_cd101_playlist => :environment do
 	end
 
 end
+
+desc "Grab CD101 last 3 hours"
+task :cd101_recent => :environment do 
+	require 'mechanize'
+	browser = Mechanize.new
+	page = browser.get('http://cd1025.com/about/playlists/now-playing')
+	tmp = Collection.find_by_name('cd102_recent')
+	unless tmp.nil?
+		tmp.delete
+	end
+	collection = Collection.create!(:name => 'cd102_recent')
+	page.search("#content-main tbody").each do |content|
+		content.search('tr').each do |tr|
+			links = Array.new
+			tds = Array.new
+			tr.search('a').each do |link|
+				links << link.text(); 
+			end
+			tr.search('td').each do |td|
+				tds << td.text(); 
+			end
+
+			artistName = links[1]
+			songName = tds[2]
+			collection.tracks.create!(:artist => artistName, :name => songName)
+
+		end
+	end
+
+end
