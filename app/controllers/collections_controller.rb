@@ -5,6 +5,6 @@ class CollectionsController < ApplicationController
   	respond_with Collection.all
   end
   def show
-  	respond_with Collection.find(params[:id]).tracks
+  	respond_with Collection.find_by_name(params[:id]).tracks
   end
 end
