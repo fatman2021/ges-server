@@ -1,6 +1,8 @@
 MusicServer::Application.routes.draw do
   resources :collections
 
+  match "/collections/:id/:trackid" => "tracks#show", :via => :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
