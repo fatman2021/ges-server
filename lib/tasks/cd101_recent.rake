@@ -33,7 +33,7 @@ task :cd101_recent => :environment do
 	page = browser.get('http://cd1025.com/about/playlists/now-playing')
 	tmp = Collection.find_by_name('cd102_recent')
 	unless tmp.nil?
-		tmp.delete
+		tmp.destroy
 	end
 	collection = Collection.create!(:name => 'cd102_recent')
 	page.search("#content-main tbody").each do |content|
