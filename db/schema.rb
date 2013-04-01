@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207202208) do
+ActiveRecord::Schema.define(:version => 20130323221558) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "collections_tracks", :id => false, :force => true do |t|
+    t.integer "collection_id"
+    t.integer "track_id"
+  end
+
+  add_index "collections_tracks", ["collection_id", "track_id"], :name => "index_collections_tracks_on_collection_id_and_track_id"
+  add_index "collections_tracks", ["track_id", "collection_id"], :name => "index_collections_tracks_on_track_id_and_collection_id"
 
   create_table "tracks", :force => true do |t|
     t.string   "artist"
