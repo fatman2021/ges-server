@@ -5,7 +5,7 @@ gem 'whenever', :require => false
 
 
 gem 'rails', '3.2.11'
-gem 'devise', '~> 2.2.3'
+gem 'devise', '~> 3.5.10'
 gem 'cancan', '~> 1.6.9'
 gem 'simple_form', '~> 2.1.0'
 gem 'squeel', '~> 1.0.18'
