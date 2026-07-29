@@ -20,7 +20,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.7'
+  gem 'sqlite3', '~> 2.9.5'
   gem 'rspec-rails', '~> 2.12.2'
   gem 'factory_girl_rails', '~> 4.2.1'
 end
